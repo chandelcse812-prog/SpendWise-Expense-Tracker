@@ -1,0 +1,1 @@
+console.log("SpendWise application started!");
