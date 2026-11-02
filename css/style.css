@@ -1,9 +1,1463 @@
+
+/* =========================================
+   SPENDWISE - COMPLETE DASHBOARD STYLING
+========================================= */
+
+
+/* =========================================
+   1. DESIGN SYSTEM
+========================================= */
+
+:root {
+    --bg-primary: #0b1120;
+    --bg-secondary: #111a2e;
+    --bg-card: #151f33;
+    --bg-card-hover: #1b2940;
+
+    --accent-green: #10b981;
+    --accent-green-light: #34d399;
+    --accent-purple: #8b5cf6;
+    --accent-blue: #3b82f6;
+    --accent-yellow: #f59e0b;
+    --accent-red: #ef4444;
+
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --border-color: #263449;
+    --card-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+
+    --sidebar-width: 250px;
+    --header-height: 75px;
+
+    --radius-small: 8px;
+    --radius-medium: 14px;
+    --radius-large: 20px;
+
+    --transition: all 0.25s ease;
+}
+
+
+/* =========================================
+   2. LIGHT THEME VARIABLES
+========================================= */
+
+body.light-theme {
+    --bg-primary: #f3f6fb;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+
+    --text-primary: #172033;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+
+    --border-color: #e2e8f0;
+    --card-shadow: 0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================
+   3. RESET AND GLOBAL STYLES
+========================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Arial, sans-serif;
+
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+
+    transition: var(--transition);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+::selection {
+    background: var(--accent-green);
+    color: #ffffff;
+}
+
+
+/* =========================================
+   4. SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+
+/* =========================================
+   5. MAIN APPLICATION LAYOUT
+========================================= */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* =========================================
+   6. SIDEBAR
+========================================= */
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
+
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 55px;
+}
+
+.brand-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        var(--accent-green),
+        #059669
+    );
+
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2);
+}
+
+.brand-name {
+    font-size: 21px;
+    font-weight: 750;
+    letter-spacing: -0.7px;
+}
+
+.sidebar-menu {
+    width: 100%;
+}
+
+.sidebar-label {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+
+    margin: 0 0 16px 12px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 550;
+
+    border-radius: var(--radius-medium);
+
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    transform: translateX(3px);
+}
+
+.nav-link.active {
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--accent-green-light);
+    font-weight: 650;
+}
+
+.nav-icon {
+    font-size: 19px;
+    width: 22px;
+    text-align: center;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.sidebar-tip {
+    padding: 17px;
+    margin-bottom: 25px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.12),
+        rgba(139, 92, 246, 0.10)
+    );
+
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.tip-icon {
+    color: var(--accent-green-light);
+    font-size: 21px;
+}
+
+.sidebar-tip p {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 17px 5px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.profile-avatar {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+        135deg,
+        var(--accent-purple),
+        var(--accent-blue)
+    );
+
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info strong {
+    font-size: 13px;
+}
+
+.profile-info span {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* =========================================
+   7. MAIN CONTENT
+========================================= */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+
+    margin-left: var(--sidebar-width);
+    padding: 35px 42px;
+
+    max-width: calc(100% - var(--sidebar-width));
+}
+
+
+/* =========================================
+   8. TOP HEADER
+========================================= */
+
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 38px;
+}
+
+.greeting,
+.section-eyebrow {
+    color: var(--accent-green-light);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1.6px;
+}
+
+.header-left h1 {
+    margin-top: 5px;
+    font-size: 31px;
+    font-weight: 750;
+    letter-spacing: -1px;
+}
+
+.header-subtitle {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* =========================================
+   9. BUTTONS
+========================================= */
+
+.primary-button,
+.secondary-button,
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 11px;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    transition: var(--transition);
+}
+
+.primary-button {
+    padding: 12px 19px;
+
+    background: var(--accent-green);
+    color: #ffffff;
+
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.15);
+}
+
+.primary-button:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(16, 185, 129, 0.23);
+}
+
+.secondary-button {
+    padding: 11px 16px;
+
+    background: var(--bg-card);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+}
+
+.secondary-button:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-green);
+}
+
+.icon-button {
+    width: 43px;
+    height: 43px;
+
+    background: var(--bg-card);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+    font-size: 20px;
+}
+
+.icon-button:hover {
+    color: var(--accent-green-light);
+    border-color: var(--accent-green);
+    transform: rotate(12deg);
+}
+
+
+/* =========================================
+   10. SUMMARY CARDS
+========================================= */
+
+.summary-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+
+    margin-bottom: 42px;
+}
+
+.summary-card {
+    position: relative;
+    overflow: hidden;
+
+    padding: 23px;
+
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--card-shadow);
+
+    transition: var(--transition);
+}
+
+.summary-card::after {
+    content: "";
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    top: -55px;
+    right: -45px;
+
+    background: rgba(16, 185, 129, 0.06);
+    border-radius: 50%;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 550;
+}
+
+.card-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+    font-size: 20px;
+}
+
+.green-icon {
+    color: var(--accent-green-light);
+    background: rgba(16, 185, 129, 0.12);
+}
+
+.purple-icon {
+    color: #a78bfa;
+    background: rgba(139, 92, 246, 0.13);
+}
+
+.yellow-icon {
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.13);
+}
+
+.summary-card h2 {
+    margin-top: 18px;
+
+    font-size: clamp(23px, 2.5vw, 30px);
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.card-description {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   11. SECTION HEADINGS
+========================================= */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.period-label {
+    padding: 8px 13px;
+
+    color: var(--text-secondary);
+    background: var(--bg-card);
+
+    border: 1px solid var(--border-color);
+    border-radius: 9px;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   12. ANALYTICS SECTION
+========================================= */
+
+.analytics-section {
+    margin-bottom: 38px;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(260px, 1fr);
+    gap: 20px;
+}
+
+.panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-large);
+
+    box-shadow: var(--card-shadow);
+}
+
+.chart-panel,
+.category-panel {
+    padding: 24px;
+    min-width: 0;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.panel-heading h3 {
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.panel-heading p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.panel-menu {
+    color: var(--text-muted);
+    font-size: 19px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.chart-container {
+    min-height: 240px;
+    margin-top: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-placeholder {
+    width: 100%;
+    min-height: 200px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(139, 92, 246, 0.035);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-medium);
+}
+
+.chart-placeholder p {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.category-breakdown {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.empty-message {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: center;
+    padding: 35px 10px;
+}
+
+
+/* =========================================
+   13. BUDGET SECTION
+========================================= */
+
+.budget-section {
+    margin-bottom: 42px;
+}
+
+.budget-panel {
+    padding: 25px;
+}
+
+.budget-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--accent-green-light);
+
+    border-radius: 12px;
+    font-size: 23px;
+}
+
+.budget-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-top: 25px;
+}
+
+.budget-details span {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.budget-details h3 {
+    margin-top: 5px;
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.budget-spent {
+    text-align: right;
+}
+
+.budget-progress {
+    width: 100%;
+    height: 10px;
+
+    margin-top: 22px;
+
+    background: var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.budget-progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        var(--accent-green),
+        var(--accent-green-light)
+    );
+
+    border-radius: inherit;
+    transition: width 0.5s ease;
+}
+
+.budget-message {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+
+/* =========================================
+   14. EXPENSE FORM
+========================================= */
+
+.form-section {
+    margin-bottom: 42px;
+}
+
+.expense-form {
+    padding: 25px;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.form-group input,
+.form-group select,
+.transaction-controls input,
+.transaction-controls select {
+    width: 100%;
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    outline: none;
+    font-size: 13px;
+
+    transition: var(--transition);
+}
+
+.form-group input::placeholder,
+.transaction-controls input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.transaction-controls input:focus,
+.transaction-controls select:focus {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.10);
+}
+
+.form-group select,
+.transaction-controls select {
+    cursor: pointer;
+}
+
+.form-group select option,
+.transaction-controls select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+.form-group input[type="date"] {
+    color-scheme: dark;
+}
+
+body.light-theme .form-group input[type="date"] {
+    color-scheme: light;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 5px;
+}
+
+#cancel-edit-btn {
+    display: none;
+}
+
+
+/* =========================================
+   15. TRANSACTIONS SECTION
+========================================= */
+
+.transactions-section {
+    margin-bottom: 35px;
+}
+
+.transaction-heading {
+    align-items: flex-end;
+}
+
+.section-description {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.transaction-controls {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) 190px 190px;
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.transaction-panel {
+    overflow: hidden;
+}
+
+.transaction-list-header {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.6fr) 1fr 1fr 1fr 85px;
+    align-items: center;
+    gap: 12px;
+
+    padding: 17px 22px;
+
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-list-header span {
+    color: var(--text-muted);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 1px;
+}
+
+.expense-list {
+    width: 100%;
+}
+
+.empty-state {
+    min-height: 210px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.empty-state-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 13px;
+
+    color: var(--accent-green-light);
+    background: rgba(16, 185, 129, 0.10);
+
+    border-radius: 50%;
+    font-size: 28px;
+}
+
+.empty-state h3 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.empty-state p {
+    max-width: 300px;
+    margin-top: 5px;
+
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* =========================================
+   16. DYNAMIC TRANSACTION ROWS
+========================================= */
+
+.expense-item {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.6fr) 1fr 1fr 1fr 85px;
+    align-items: center;
+    gap: 12px;
+
+    padding: 17px 22px;
+
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.expense-item:last-child {
+    border-bottom: none;
+}
+
+.expense-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.expense-name {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.expense-category-badge {
+    display: inline-flex;
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    color: var(--accent-green-light);
+    background: rgba(16, 185, 129, 0.10);
+
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.expense-date {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+.expense-amount {
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.expense-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.action-button {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    font-size: 13px;
+    transition: var(--transition);
+}
+
+.action-button:hover {
+    color: var(--accent-green-light);
+    border-color: var(--accent-green);
+}
+
+.action-button.delete:hover {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+
+/* =========================================
+   17. CATEGORY ANALYTICS ELEMENTS
+========================================= */
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    font-size: 12px;
+}
+
+.category-info span:first-child {
+    color: var(--text-secondary);
+}
+
+.category-info span:last-child {
+    color: var(--text-primary);
+    font-weight: 650;
+}
+
+.category-progress {
+    width: 100%;
+    height: 7px;
+
+    background: var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.category-progress-fill {
+    height: 100%;
+    background: var(--accent-purple);
+    border-radius: inherit;
+}
+
+
+/* =========================================
+   18. FOOTER
+========================================= */
+
+.main-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 22px 0 5px;
+
+    border-top: 1px solid var(--border-color);
+
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+
+/* =========================================
+   19. FOCUS AND INTERACTION
+========================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   20. TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1100px) {
+
+    :root {
+        --sidebar-width: 215px;
+    }
+
+    .main-content {
+        padding: 30px 25px;
+    }
+
+    .summary-section {
+        gap: 13px;
+    }
+
+    .summary-card {
+        padding: 19px;
+    }
+
+    .analytics-grid {
+        grid-template-columns: minmax(0, 1.3fr) minmax(230px, 1fr);
+        gap: 14px;
+    }
+
+    .chart-panel,
+    .category-panel {
+        padding: 19px;
+    }
+
+    .transaction-controls {
+        grid-template-columns: minmax(160px, 1fr) 160px 160px;
+    }
+}
+
+
+@media (max-width: 850px) {
+
+    :root {
+        --sidebar-width: 185px;
+    }
+
+    .sidebar {
+        padding: 25px 14px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .main-content {
+        padding: 25px 20px;
+    }
+
+    .summary-section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .transaction-controls input {
+        grid-column: 1 / -1;
+    }
+}
+
+
+/* =========================================
+   21. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+
+    .app-container {
+        display: block;
+    }
+
+    .sidebar {
+        position: relative;
+        top: auto;
+        left: auto;
+        bottom: auto;
+
+        width: 100%;
+        min-width: 0;
+
+        padding: 15px 18px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand {
+        margin-bottom: 17px;
+    }
+
+    .sidebar-menu {
+        width: 100%;
+    }
+
+    .sidebar-label,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .nav-link {
+        flex: 1;
+        justify-content: center;
+        gap: 6px;
+
+        padding: 10px 7px;
+        font-size: 11px;
+    }
+
+    .nav-icon {
+        font-size: 15px;
+        width: auto;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+
+        padding: 24px 16px;
+    }
+
+    .top-header {
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 27px;
+    }
+
+    .header-left h1 {
+        font-size: 25px;
+    }
+
+    .header-subtitle {
+        font-size: 11px;
+    }
+
+    .header-actions {
+        gap: 7px;
+    }
+
+    .primary-button {
+        padding: 11px 12px;
+        font-size: 11px;
+    }
+
+    .icon-button {
+        width: 39px;
+        height: 39px;
+    }
+
+    .summary-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .summary-card {
+        padding: 19px;
+    }
+
+    .summary-card h2 {
+        font-size: 25px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .period-label {
+        font-size: 9px;
+        padding: 7px 9px;
+    }
+
+    .chart-panel,
+    .category-panel,
+    .budget-panel {
+        padding: 18px;
+    }
+
+    .chart-container {
+        min-height: 190px;
+    }
+
+    .budget-details h3 {
+        font-size: 19px;
+    }
+
+    .expense-form {
+        grid-template-columns: 1fr;
+        padding: 19px;
+        gap: 17px;
+    }
+
+    .form-actions {
+        grid-column: auto;
+        flex-wrap: wrap;
+    }
+
+    .form-actions button {
+        flex: 1;
+    }
+
+    .transaction-heading {
+        align-items: flex-start;
+    }
+
+    .transaction-heading .secondary-button {
+        padding: 9px 10px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .transaction-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .transaction-controls input {
+        grid-column: auto;
+    }
+
+    .transaction-list-header {
+        display: none;
+    }
+
+    .expense-item {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px 12px;
+
+        padding: 16px;
+    }
+
+    .expense-name {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .expense-category-badge {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .expense-date {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .expense-amount {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+    }
+
+    .expense-actions {
+        grid-column: 2;
+        grid-row: 2 / 4;
+        justify-content: flex-end;
+    }
+
+    .main-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================
+   22. SMALL MOBILE SCREENS
+========================================= */
+
+@media (max-width: 380px) {
+
+    .main-content {
+        padding: 20px 12px;
+    }
+
+    .top-header {
+        flex-direction: column;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .brand-name {
+        font-size: 17px;
+    }
+
+    .nav-link {
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .budget-details h3 {
+        font-size: 17px;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
 }
