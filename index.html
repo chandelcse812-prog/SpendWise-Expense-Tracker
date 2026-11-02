@@ -1,16 +1,539 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SpendWise - Expense Tracker</title>
+
+    <meta name="description" content="SpendWise - Track expenses, manage your budget and understand your spending.">
+
+    <title>SpendWise | Expense Tracker</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript -->
+    <script src="js/script.js" defer></script>
 </head>
+
 <body>
 
-    <h1>SpendWise</h1>
-    <p>Your personal expense tracker.</p>
+    <!-- Main Application -->
+    <div class="app-container">
 
-    <script src="js/script.js"></script>
+<!-- Sidebar -->
+<aside class="sidebar">
+
+    <!-- Brand -->
+    <a href="#dashboard" class="brand">
+        <span class="brand-icon">S</span>
+        <span class="brand-name">SpendWise</span>
+    </a>
+
+    <!-- Navigation -->
+    <div class="sidebar-menu">
+
+        <p class="sidebar-label">MENU</p>
+
+        <nav class="sidebar-nav">
+
+            <a href="#dashboard" class="nav-link active">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#transactions" class="nav-link">
+                <span class="nav-icon">⇄</span>
+                <span>Transactions</span>
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <span class="nav-icon">▥</span>
+                <span>Analytics</span>
+            </a>
+
+        </nav>
+
+    </div>
+
+    <!-- Sidebar Bottom -->
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-tip">
+            <span class="tip-icon">✦</span>
+            <p>Small steps today, better finances tomorrow.</p>
+        </div>
+
+        <!-- User Profile -->
+        <div class="sidebar-footer">
+
+            <div class="profile-avatar">N</div>
+
+            <div class="profile-info">
+                <strong>My Account</strong>
+                <span>Personal Finance</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- Main Content -->
+<main class="main-content" id="dashboard">
+
+    <!-- Top Header -->
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <p class="greeting">FINANCIAL OVERVIEW</p>
+
+            <h1>Dashboard</h1>
+
+            <p class="header-subtitle">
+                Here's what's happening with your money.
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                class="icon-button"
+                id="theme-toggle"
+                aria-label="Toggle theme"
+                type="button"
+            >
+                ☼
+            </button>
+
+            <!-- Add Expense -->
+            <button
+                class="primary-button"
+                id="add-expense-btn"
+                type="button"
+            >
+                <span>＋</span>
+                Add Expense
+            </button>
+
+        </div>
+
+    </header>
+
+   <!-- Summary Cards -->
+<section class="summary-section">
+
+    <!-- Total Expenses -->
+    <article class="summary-card">
+
+        <div class="card-top">
+            <span>Total Expenses</span>
+            <span class="card-icon green-icon">↗</span>
+        </div>
+
+        <h2 id="total-expenses">₹0</h2>
+
+        <p class="card-description">
+            All recorded expenses
+        </p>
+
+    </article>
+
+
+    <!-- Monthly Expenses -->
+    <article class="summary-card">
+
+        <div class="card-top">
+            <span>This Month</span>
+            <span class="card-icon purple-icon">◷</span>
+        </div>
+
+        <h2 id="monthly-expenses">₹0</h2>
+
+        <p class="card-description">
+            Your monthly spending
+        </p>
+
+    </article>
+
+
+    <!-- Transaction Count -->
+    <article class="summary-card">
+
+        <div class="card-top">
+            <span>Transactions</span>
+            <span class="card-icon yellow-icon">⇄</span>
+        </div>
+
+        <h2 id="transaction-count">0</h2>
+
+        <p class="card-description">
+            Total transactions recorded
+        </p>
+
+    </article>
+
+</section>
+
+<!-- Analytics Section -->
+<section class="analytics-section" id="analytics">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-eyebrow">YOUR FINANCES</p>
+            <h2>Spending Overview</h2>
+        </div>
+
+        <span class="period-label">Monthly Activity</span>
+
+    </div>
+
+
+    <div class="analytics-grid">
+
+        <!-- Monthly Spending Chart -->
+        <article class="panel chart-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <h3>Monthly Spending</h3>
+                    <p>Track your spending over time</p>
+                </div>
+
+                <span class="panel-menu">•••</span>
+
+            </div>
+
+            <div class="chart-container" id="spending-chart">
+
+                <div class="chart-placeholder">
+                    <p>Your spending chart will appear here.</p>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- Category Breakdown -->
+        <article class="panel category-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <h3>Top Categories</h3>
+                    <p>Where your money goes</p>
+                </div>
+
+                <span class="panel-menu">•••</span>
+
+            </div>
+
+            <div id="category-breakdown" class="category-breakdown">
+
+                <p class="empty-message">
+                    Add expenses to see your category breakdown.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- Budget Section -->
+<section class="budget-section">
+
+    <article class="panel budget-panel">
+
+        <div class="panel-heading">
+
+            <div>
+                <p class="section-eyebrow">MONTHLY LIMIT</p>
+                <h2>Budget Overview</h2>
+            </div>
+
+            <span class="budget-icon">◎</span>
+
+        </div>
+
+
+        <div class="budget-details">
+
+            <div>
+                <span>Monthly Budget</span>
+                <h3 id="monthly-budget">₹20,000</h3>
+            </div>
+
+            <div class="budget-spent">
+                <span>Amount Spent</span>
+                <h3 id="budget-spent">₹0</h3>
+            </div>
+
+        </div>
+
+
+        <div class="budget-progress">
+
+            <div
+                class="budget-progress-fill"
+                id="budget-progress-fill"
+            ></div>
+
+        </div>
+
+
+        <p class="budget-message" id="budget-message">
+            Start tracking your expenses to monitor your budget.
+        </p>
+
+    </article>
+
+</section>
+
+<!-- Expense Form Section -->
+<section class="form-section" id="expense-form-section">
+
+    <div class="section-heading">
+
+        <div>
+            <p class="section-eyebrow">MANAGE YOUR MONEY</p>
+            <h2 id="form-heading">Add New Expense</h2>
+        </div>
+
+    </div>
+
+
+    <form id="expense-form" class="panel expense-form">
+
+        <!-- Used when editing an existing expense -->
+        <input type="hidden" id="expense-id">
+
+
+        <!-- Expense Name -->
+        <div class="form-group">
+
+            <label for="expense-title">
+                Expense Name
+            </label>
+
+            <input
+                type="text"
+                id="expense-title"
+                placeholder="e.g. Grocery shopping"
+                required
+            >
+
+        </div>
+
+
+        <!-- Amount -->
+        <div class="form-group">
+
+            <label for="expense-amount">
+                Amount (₹)
+            </label>
+
+            <input
+                type="number"
+                id="expense-amount"
+                placeholder="e.g. 500"
+                min="0.01"
+                step="0.01"
+                required
+            >
+
+        </div>
+
+
+        <!-- Category -->
+        <div class="form-group">
+
+            <label for="expense-category">
+                Category
+            </label>
+
+            <select id="expense-category" required>
+
+                <option value="">Select category</option>
+
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Education">Education</option>
+                <option value="Bills">Bills</option>
+                <option value="Health">Health</option>
+                <option value="Other">Other</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Date -->
+        <div class="form-group">
+
+            <label for="expense-date">
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="expense-date"
+                required
+            >
+
+        </div>
+
+
+        <!-- Form Buttons -->
+        <div class="form-actions">
+
+            <button
+                type="submit"
+                class="primary-button"
+                id="save-expense-btn"
+            >
+                Save Expense
+            </button>
+
+            <button
+                type="button"
+                class="secondary-button"
+                id="cancel-edit-btn"
+            >
+                Cancel
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+<!-- Transactions Section -->
+<section class="transactions-section" id="transactions">
+
+    <div class="section-heading transaction-heading">
+
+        <div>
+
+            <p class="section-eyebrow">YOUR RECORDS</p>
+
+            <h2>Recent Transactions</h2>
+
+            <p class="section-description">
+                View and manage all your expenses.
+            </p>
+
+        </div>
+
+        <button
+            class="secondary-button"
+            id="export-csv-btn"
+            type="button"
+        >
+            ↓ Export CSV
+        </button>
+
+    </div>
+    <!-- Search and Filters -->
+<div class="transaction-controls">
+
+    <input
+        type="search"
+        id="search-expense"
+        placeholder="Search expenses..."
+    >
+
+
+    <select id="filter-category">
+
+        <option value="all">All Categories</option>
+
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Education">Education</option>
+        <option value="Bills">Bills</option>
+        <option value="Health">Health</option>
+        <option value="Other">Other</option>
+
+    </select>
+
+
+    <select id="sort-expenses">
+
+        <option value="newest">Newest First</option>
+        <option value="oldest">Oldest First</option>
+        <option value="highest">Highest Amount</option>
+        <option value="lowest">Lowest Amount</option>
+
+    </select>
+
+</div>
+ <!-- Transaction List -->
+<div class="panel transaction-panel">
+
+    <!-- Table Header -->
+    <div class="transaction-list-header">
+
+        <span>EXPENSE</span>
+        <span>CATEGORY</span>
+        <span>DATE</span>
+        <span>AMOUNT</span>
+        <span>ACTION</span>
+
+    </div>
+
+
+    <!-- Expenses will be displayed here -->
+    <div id="expense-list" class="expense-list">
+
+        <div class="empty-state">
+
+            <span class="empty-state-icon">◌</span>
+
+            <h3>No transactions yet</h3>
+
+            <p>
+                Your expenses will appear here once you add them.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+<!-- Footer -->
+<footer class="main-footer">
+
+    <p>
+        © 2026 SpendWise. Take control of your finances.
+    </p>
+
+    <span>Designed with care.</span>
+
+</footer>
+</main>
+
+
+    </div>
+
 </body>
+
 </html>
