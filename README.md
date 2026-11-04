@@ -32,6 +32,8 @@ SpendWise is a responsive personal expense tracker built using HTML, CSS, and Ja
 
 ## Project Structure
 
+## Project Structure
+
 ```text
 SpendWise/
 ├── assets/
@@ -42,6 +44,7 @@ SpendWise/
 ├── .gitignore
 ├── index.html
 └── README.md
+```
 
 ## Live Demo
 
