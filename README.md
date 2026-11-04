@@ -32,7 +32,6 @@ SpendWise is a responsive personal expense tracker built using HTML, CSS, and Ja
 
 ## Project Structure
 
-## Project Structure
 
 ```text
 SpendWise/
@@ -49,7 +48,3 @@ SpendWise/
 ## Live Demo
 
 [View SpendWise Live](https://spendwise-expense-tracker-p34ffkzcb.vercel.app)
-
-## GitHub Repository
-
-[SpendWise – GitHub](https://github.com/chandelcse812-prog/SpendWise-Expense-Tracker)
