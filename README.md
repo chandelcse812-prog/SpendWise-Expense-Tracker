@@ -42,3 +42,11 @@ SpendWise/
 ├── .gitignore
 ├── index.html
 └── README.md
+
+## Live Demo
+
+[View SpendWise Live](https://spendwise-expense-tracker-p34ffkzcb.vercel.app)
+
+## GitHub Repository
+
+[SpendWise – GitHub](https://github.com/chandelcse812-prog/SpendWise-Expense-Tracker)
